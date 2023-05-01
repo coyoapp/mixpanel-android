@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
@@ -61,7 +62,12 @@ public class HttpTest {
 
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory)
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) throws ServiceUnavailableException, IOException {
+                return performRequest(endpointUrl, params, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), socketFactory);
+            }
+
+            @Override
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory)
                     throws ServiceUnavailableException, IOException {
                 try {
                     if (mFlushResults.isEmpty()) {

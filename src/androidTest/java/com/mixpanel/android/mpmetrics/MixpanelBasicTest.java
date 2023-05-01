@@ -21,8 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -702,7 +704,13 @@ public class MixpanelBasicTest {
 
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) throws ServiceUnavailableException, IOException {
+                return performRequest(endpointUrl, params, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), socketFactory);
+            }
+
+            @Override
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory)
+                    throws ServiceUnavailableException, IOException {
                 final boolean isIdentified = isIdentifiedRef.get();
                 assertTrue(params.containsKey("data"));
                 final String decoded = Base64Coder.decodeString(params.get("data").toString());
@@ -1401,7 +1409,13 @@ public class MixpanelBasicTest {
     public void testAlias() {
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) throws ServiceUnavailableException, IOException {
+                return performRequest(endpointUrl, params, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), socketFactory);
+            }
+
+            @Override
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory)
+                    throws ServiceUnavailableException, IOException {
                 try {
                     assertTrue(params.containsKey("data"));
                     final String jsonData = Base64Coder.decodeString(params.get("data").toString());
