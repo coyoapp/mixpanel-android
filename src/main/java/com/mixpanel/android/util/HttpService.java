@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -89,6 +90,12 @@ public class HttpService implements RemoteService {
 
     @Override
     public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) throws ServiceUnavailableException, IOException {
+        return performRequest(endpointUrl, params, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), socketFactory);
+    }
+
+    @Override
+    public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory)
+            throws ServiceUnavailableException, IOException {
         MPLog.v(LOGTAG, "Attempting request to " + endpointUrl);
 
         byte[] response = null;
@@ -119,6 +126,9 @@ public class HttpService implements RemoteService {
                     for (Map.Entry<String, Object> param : params.entrySet()) {
                         builder.appendQueryParameter(param.getKey(), param.getValue().toString());
                     }
+                    for(Map.Entry<String,String> param: headers.entrySet()){
+                        connection.setRequestProperty(param.getKey(), param.getValue());
+                    }
                     String query = builder.build().getEncodedQuery();
 
                     connection.setFixedLengthStreamingMode(query.getBytes().length);
@@ -147,14 +157,22 @@ public class HttpService implements RemoteService {
                 } else {
                     throw e;
                 }
-            }
-            finally {
+            } finally {
                 if (null != bout)
-                    try { bout.close(); } catch (final IOException e) {}
+                    try {
+                        bout.close();
+                    } catch (final IOException e) {
+                    }
                 if (null != out)
-                    try { out.close(); } catch (final IOException e) {}
+                    try {
+                        out.close();
+                    } catch (final IOException e) {
+                    }
                 if (null != in)
-                    try { in.close(); } catch (final IOException e) {}
+                    try {
+                        in.close();
+                    } catch (final IOException e) {
+                    }
                 if (null != connection)
                     connection.disconnect();
             }

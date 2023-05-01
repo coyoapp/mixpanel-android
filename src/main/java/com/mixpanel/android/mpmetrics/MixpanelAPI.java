@@ -189,7 +189,8 @@ public class MixpanelAPI {
                 final JSONObject messageProps = new JSONObject();
                 messageProps.put(AutomaticEvents.VERSION_UPDATED, deviceInfo.get("$android_app_version"));
                 track(AutomaticEvents.APP_UPDATED, messageProps, true);
-            } catch (JSONException e) {}
+            } catch (JSONException e) {
+            }
         }
 
         if (!mConfig.getDisableExceptionHandler()) {
@@ -265,9 +266,9 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
+     * @param context              The application context you are tracking
+     * @param token                Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                             in the settings dialog.
      * @param trackAutomaticEvents Whether or not to collect common mobile events
      *                             include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
@@ -297,11 +298,11 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
-     * @param instanceName The name you want to uniquely identify the Mixpanel Instance.
-     *      It is useful when you want more than one Mixpanel instance under the same project token
+     * @param context              The application context you are tracking
+     * @param token                Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                             in the settings dialog.
+     * @param instanceName         The name you want to uniquely identify the Mixpanel Instance.
+     *                             It is useful when you want more than one Mixpanel instance under the same project token
      * @param trackAutomaticEvents Whether or not to collect common mobile events
      *                             include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
@@ -331,13 +332,13 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
+     * @param context               The application context you are tracking
+     * @param token                 Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                              in the settings dialog.
      * @param optOutTrackingDefault Whether or not Mixpanel can start tracking by default. See
-     *     {@link #optOutTracking()}.
-     * @param trackAutomaticEvents Whether or not to collect common mobile events
-     *                             include app sessions, first app opens, app updated, etc.
+     *                              {@link #optOutTracking()}.
+     * @param trackAutomaticEvents  Whether or not to collect common mobile events
+     *                              include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
      */
     public static MixpanelAPI getInstance(Context context, String token, boolean optOutTrackingDefault, boolean trackAutomaticEvents) {
@@ -365,15 +366,15 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
+     * @param context               The application context you are tracking
+     * @param token                 Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                              in the settings dialog.
      * @param optOutTrackingDefault Whether or not Mixpanel can start tracking by default. See
-     *     {@link #optOutTracking()}.
-     * @param instanceName The name you want to uniquely identify the Mixpanel Instance.
-        It is useful when you want more than one Mixpanel instance under the same project token.
-     * @param trackAutomaticEvents Whether or not to collect common mobile events
-     *                             include app sessions, first app opens, app updated, etc.
+     *                              {@link #optOutTracking()}.
+     * @param instanceName          The name you want to uniquely identify the Mixpanel Instance.
+     *                              It is useful when you want more than one Mixpanel instance under the same project token.
+     * @param trackAutomaticEvents  Whether or not to collect common mobile events
+     *                              include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
      */
     public static MixpanelAPI getInstance(Context context, String token, boolean optOutTrackingDefault, String instanceName, boolean trackAutomaticEvents) {
@@ -401,10 +402,10 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
-     * @param superProperties A JSONObject containing super properties to register.
+     * @param context              The application context you are tracking
+     * @param token                Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                             in the settings dialog.
+     * @param superProperties      A JSONObject containing super properties to register.
      * @param trackAutomaticEvents Whether or not to collect common mobile events
      *                             include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
@@ -434,12 +435,12 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
-     * @param superProperties A JSONObject containing super properties to register.
-     * @param instanceName The name you want to uniquely identify the Mixpanel Instance.
-     *      It is useful when you want more than one Mixpanel instance under the same project token
+     * @param context              The application context you are tracking
+     * @param token                Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                             in the settings dialog.
+     * @param superProperties      A JSONObject containing super properties to register.
+     * @param instanceName         The name you want to uniquely identify the Mixpanel Instance.
+     *                             It is useful when you want more than one Mixpanel instance under the same project token
      * @param trackAutomaticEvents Whether or not to collect common mobile events
      *                             include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
@@ -469,16 +470,16 @@ public class MixpanelAPI {
      * }
      * </pre>
      *
-     * @param context The application context you are tracking
-     * @param token Your Mixpanel project token. You can get your project token on the Mixpanel web site,
-     *     in the settings dialog.
+     * @param context               The application context you are tracking
+     * @param token                 Your Mixpanel project token. You can get your project token on the Mixpanel web site,
+     *                              in the settings dialog.
      * @param optOutTrackingDefault Whether or not Mixpanel can start tracking by default. See
-     *     {@link #optOutTracking()}.
-     * @param superProperties A JSONObject containing super properties to register.
-     * @param instanceName The name you want to uniquely identify the Mixpanel Instance.
-     *      It is useful when you want more than one Mixpanel instance under the same project token
-     * @param trackAutomaticEvents Whether or not to collect common mobile events
-     *                             include app sessions, first app opens, app updated, etc.
+     *                              {@link #optOutTracking()}.
+     * @param superProperties       A JSONObject containing super properties to register.
+     * @param instanceName          The name you want to uniquely identify the Mixpanel Instance.
+     *                              It is useful when you want more than one Mixpanel instance under the same project token
+     * @param trackAutomaticEvents  Whether or not to collect common mobile events
+     *                              include app sessions, first app opens, app updated, etc.
      * @return an instance of MixpanelAPI associated with your project
      */
     public static MixpanelAPI getInstance(Context context, String token, boolean optOutTrackingDefault, JSONObject superProperties, String instanceName, boolean trackAutomaticEvents) {
@@ -492,7 +493,7 @@ public class MixpanelAPI {
                 sReferrerPrefs = sPrefsLoader.loadPreferences(context, MPConfig.REFERRER_PREFS_NAME, null);
             }
             String instanceKey = instanceName != null ? instanceName : token;
-            Map <Context, MixpanelAPI> instances = sInstanceMap.get(instanceKey);
+            Map<Context, MixpanelAPI> instances = sInstanceMap.get(instanceKey);
             if (null == instances) {
                 instances = new HashMap<Context, MixpanelAPI>();
                 sInstanceMap.put(instanceKey, instances);
@@ -535,7 +536,7 @@ public class MixpanelAPI {
     /**
      * Set maximum number of events/updates to send in a single network request
      *
-     * @param flushBatchSize  int, the number of events to be flushed at a time, defaults to 50
+     * @param flushBatchSize int, the number of events to be flushed at a time, defaults to 50
      */
     public void setFlushBatchSize(int flushBatchSize) {
         mConfig.setFlushBatchSize(flushBatchSize);
@@ -579,8 +580,27 @@ public class MixpanelAPI {
         mConfig.setServerURL(serverURL);
     }
 
+    public void addGlobalHeader(String key, String value) {
+        mConfig.addGlobalHeader(key, value);
+    }
 
-    public Boolean getTrackAutomaticEvents() { return mTrackAutomaticEvents; }
+    public void addGlobalCookie(String key, String value) {
+        mConfig.addGlobalCookie(key, value);
+    }
+
+    public void clearGlobalHeaders() {
+        mConfig.clearGlobalHeaders();
+    }
+
+    public void clearGlobalCookies() {
+        mConfig.clearGlobalCookies();
+    }
+
+
+    public Boolean getTrackAutomaticEvents() {
+        return mTrackAutomaticEvents;
+    }
+
     /**
      * This function creates a distinct_id alias from alias to distinct_id. If distinct_id is null, then it will create an alias
      * to the current events distinct_id, which may be the distinct_id randomly generated by the Mixpanel library
@@ -588,7 +608,7 @@ public class MixpanelAPI {
      *
      * <p>This call does not identify the user after. You must still call {@link #identify(String)} if you wish the new alias to be used for Events and People.
      *
-     * @param alias the new value that should represent distinct_id.
+     * @param alias       the new value that should represent distinct_id.
      * @param distinct_id the old distinct_id that alias will be mapped to.
      */
     public void alias(String alias, String distinct_id) {
@@ -622,9 +642,9 @@ public class MixpanelAPI {
      * to be called separately.
      *
      * @param distinctId a string uniquely identifying this user. Events sent to
-     *     Mixpanel or Users identified using the same distinct id will be considered associated with the
-     *     same visitor/customer for retention and funnel reporting, so be sure that the given
-     *     value is globally unique for each individual user you intend to track.
+     *                   Mixpanel or Users identified using the same distinct id will be considered associated with the
+     *                   same visitor/customer for retention and funnel reporting, so be sure that the given
+     *                   value is globally unique for each individual user you intend to track.
      */
     public void identify(String distinctId) {
         identify(distinctId, true);
@@ -643,13 +663,11 @@ public class MixpanelAPI {
      * your application.
      *
      * @param distinctId a string uniquely identifying this user. Events sent to
-     *     Mixpanel using the same disinct id will be considered associated with the
-     *     same visitor/customer for retention and funnel reporting, so be sure that the given
-     *     value is globally unique for each individual user you intend to track.
-     *
-     * @param usePeople boolean indicating whether or not to also call
-     *      {@link People#identify(String)}
-     *
+     *                   Mixpanel using the same disinct id will be considered associated with the
+     *                   same visitor/customer for retention and funnel reporting, so be sure that the given
+     *                   value is globally unique for each individual user you intend to track.
+     * @param usePeople  boolean indicating whether or not to also call
+     *                   {@link People#identify(String)}
      */
     public void identify(String distinctId, boolean usePeople) {
         if (hasOptedOutTracking()) return;
@@ -701,7 +719,6 @@ public class MixpanelAPI {
 
     /**
      * Clears all current event timings.
-     *
      */
     public void clearTimedEvents() {
         synchronized (mEventTimings) {
@@ -726,7 +743,6 @@ public class MixpanelAPI {
      * Retrieves the time elapsed for the named event since timeEvent() was called.
      *
      * @param eventName the name of the event to be tracked that was previously called with timeEvent()
-     *
      * @return Time elapsed since {@link #timeEvent(String)} was called for the given eventName.
      */
     public double eventElapsedTime(final String eventName) {
@@ -735,7 +751,7 @@ public class MixpanelAPI {
         synchronized (mEventTimings) {
             startTime = mEventTimings.get(eventName);
         }
-        return startTime == null ? 0 : (double)((currentTime - startTime) / 1000);
+        return startTime == null ? 0 : (double) ((currentTime - startTime) / 1000);
     }
 
     /**
@@ -746,11 +762,11 @@ public class MixpanelAPI {
      * have a string name, and an optional set of name/value pairs that describe the properties of
      * that event.
      *
-     * @param eventName The name of the event to send
+     * @param eventName  The name of the event to send
      * @param properties A Map containing the key value pairs of the properties to include in this event.
      *                   Pass null if no extra properties exist.
-     *
-     * See also {@link #track(String, org.json.JSONObject)}
+     *                   <p>
+     *                   See also {@link #track(String, org.json.JSONObject)}
      */
     public void trackMap(String eventName, Map<String, Object> properties) {
         if (hasOptedOutTracking()) return;
@@ -773,12 +789,12 @@ public class MixpanelAPI {
      * have a string name, and an optional set of name/value pairs that describe the properties of
      * that event. Group key/value pairs are upserted into the property map before tracking.
      *
-     * @param eventName The name of the event to send
+     * @param eventName  The name of the event to send
      * @param properties A Map containing the key value pairs of the properties to include in this event.
      *                   Pass null if no extra properties exist.
-     * @param groups A Map containing the group key value pairs for this event.
-     *
-     * See also {@link #track(String, org.json.JSONObject)}, {@link #trackMap(String, Map)}
+     * @param groups     A Map containing the group key value pairs for this event.
+     *                   <p>
+     *                   See also {@link #track(String, org.json.JSONObject)}, {@link #trackMap(String, Map)}
      */
     public void trackWithGroups(String eventName, Map<String, Object> properties, Map<String, Object> groups) {
         if (hasOptedOutTracking()) return;
@@ -806,7 +822,7 @@ public class MixpanelAPI {
      * have a string name, and an optional set of name/value pairs that describe the properties of
      * that event.
      *
-     * @param eventName The name of the event to send
+     * @param eventName  The name of the event to send
      * @param properties A JSONObject containing the key value pairs of the properties to include in this event.
      *                   Pass null if no extra properties exist.
      */
@@ -818,6 +834,7 @@ public class MixpanelAPI {
     /**
      * Equivalent to {@link #track(String, JSONObject)} with a null argument for properties.
      * Consider adding properties to your tracking to get the best insights and experience from Mixpanel.
+     *
      * @param eventName the name of the event to send
      */
     public void track(String eventName) {
@@ -844,31 +861,29 @@ public class MixpanelAPI {
     /**
      * Returns a json object of the user's current super properties
      *
-     *<p>SuperProperties are a collection of properties that will be sent with every event to Mixpanel,
+     * <p>SuperProperties are a collection of properties that will be sent with every event to Mixpanel,
      * and persist beyond the lifetime of your application.
      *
      * @return Super properties for this Mixpanel instance.
      */
-      public JSONObject getSuperProperties() {
-          JSONObject ret = new JSONObject();
-          mPersistentIdentity.addSuperPropertiesToObject(ret);
-          return ret;
-      }
+    public JSONObject getSuperProperties() {
+        JSONObject ret = new JSONObject();
+        mPersistentIdentity.addSuperPropertiesToObject(ret);
+        return ret;
+    }
 
     /**
      * Returns the string id currently being used to uniquely identify the user. Before any calls to
      * {@link #identify(String)}, this will be an id automatically generated by the library.
      *
-     *
      * @return The distinct id that uniquely identifies the current user.
-     *
      * @see #identify(String)
      */
     public String getDistinctId() {
         return mPersistentIdentity.getEventsDistinctId();
     }
 
-     /**
+    /**
      * Returns the anonymoous id currently being used to uniquely identify the device and all
      * with events sent using {@link #track(String, JSONObject)} will have this id as a device
      * id
@@ -902,9 +917,9 @@ public class MixpanelAPI {
      * <p>SuperProperties will persist even if your application is taken completely out of memory.
      * to remove a superProperty, call {@link #unregisterSuperProperty(String)} or {@link #clearSuperProperties()}
      *
-     * @param superProperties    A Map containing super properties to register
-     *
-     * See also {@link #registerSuperProperties(org.json.JSONObject)}
+     * @param superProperties A Map containing super properties to register
+     *                        <p>
+     *                        See also {@link #registerSuperProperties(org.json.JSONObject)}
      */
     public void registerSuperPropertiesMap(Map<String, Object> superProperties) {
         if (hasOptedOutTracking()) return;
@@ -933,7 +948,7 @@ public class MixpanelAPI {
      * <p>SuperProperties will persist even if your application is taken completely out of memory.
      * to remove a superProperty, call {@link #unregisterSuperProperty(String)} or {@link #clearSuperProperties()}
      *
-     * @param superProperties    A JSONObject containing super properties to register
+     * @param superProperties A JSONObject containing super properties to register
      * @see #registerSuperPropertiesOnce(JSONObject)
      * @see #unregisterSuperProperty(String)
      * @see #clearSuperProperties()
@@ -965,8 +980,8 @@ public class MixpanelAPI {
      * <p>Calling registerSuperPropertiesOnce will never overwrite existing properties.
      *
      * @param superProperties A Map containing the super properties to register.
-     *
-     * See also {@link #registerSuperPropertiesOnce(org.json.JSONObject)}
+     *                        <p>
+     *                        See also {@link #registerSuperPropertiesOnce(org.json.JSONObject)}
      */
     public void registerSuperPropertiesOnceMap(Map<String, Object> superProperties) {
         if (hasOptedOutTracking()) return;
@@ -1028,7 +1043,7 @@ public class MixpanelAPI {
      * Set the group this user belongs to.
      *
      * @param groupKey The property name associated with this group type (must already have been set up).
-     * @param groupID The group the user belongs to.
+     * @param groupID  The group the user belongs to.
      */
     public void setGroup(String groupKey, Object groupID) {
         if (hasOptedOutTracking()) return;
@@ -1069,7 +1084,7 @@ public class MixpanelAPI {
      * Add a group to this user's membership for a particular group key
      *
      * @param groupKey The property name associated with this group type (must already have been set up).
-     * @param groupID The new group the user belongs to.
+     * @param groupID  The new group the user belongs to.
      */
     public void addGroup(final String groupKey, final Object groupID) {
         if (hasOptedOutTracking()) return;
@@ -1094,7 +1109,7 @@ public class MixpanelAPI {
      * Remove a group from this user's membership for a particular group key
      *
      * @param groupKey The property name associated with this group type (must already have been set up).
-     * @param groupID The group value to remove.
+     * @param groupID  The group value to remove.
      */
     public void removeGroup(final String groupKey, final Object groupID) {
         if (hasOptedOutTracking()) return;
@@ -1142,7 +1157,7 @@ public class MixpanelAPI {
      * People Analytics properties.
      *
      * @return an instance of {@link People} that you can use to update
-     *     records in Mixpanel People Analytics.
+     * records in Mixpanel People Analytics.
      */
     public People getPeople() {
         return mPeople;
@@ -1153,9 +1168,9 @@ public class MixpanelAPI {
      * Group Analytics properties.
      *
      * @param groupKey String identifying the type of group (must be already in use as a group key)
-     * @param groupID Object identifying the specific group
+     * @param groupID  Object identifying the specific group
      * @return an instance of {@link Group} that you can use to update
-     *     records in Mixpanel Group Analytics
+     * records in Mixpanel Group Analytics
      */
     public Group getGroup(String groupKey, Object groupID) {
         String mapKey = makeMapKey(groupKey, groupID);
@@ -1210,7 +1225,7 @@ public class MixpanelAPI {
      * Use this method to opt-out a user from tracking. Events and people updates that haven't been
      * flushed yet will be deleted. Use {@link #flush()} before calling this method if you want
      * to send all the queues to Mixpanel before.
-     *
+     * <p>
      * This method will also remove any user-related information from the device.
      */
     public void optOutTracking() {
@@ -1234,7 +1249,7 @@ public class MixpanelAPI {
      * This method will internally track an opt-in event to your project. If you want to identify
      * the opt-in event and/or pass properties to the event, see {@link #optInTracking(String)} and
      * {@link #optInTracking(String, JSONObject)}
-     *
+     * <p>
      * See also {@link #optOutTracking()}.
      */
     public void optInTracking() {
@@ -1248,9 +1263,9 @@ public class MixpanelAPI {
      *
      * @param distinctId Optional string to use as the distinct ID for events.
      *                   This will call {@link #identify(String)}.
-     *
-     * See also {@link #optInTracking(String)}, {@link #optInTracking(String, JSONObject)} and
-     *  {@link #optOutTracking()}.
+     *                   <p>
+     *                   See also {@link #optInTracking(String)}, {@link #optInTracking(String, JSONObject)} and
+     *                   {@link #optOutTracking()}.
      */
     public void optInTracking(String distinctId) {
         optInTracking(distinctId, null);
@@ -1263,11 +1278,10 @@ public class MixpanelAPI {
      *
      * @param distinctId Optional string to use as the distinct ID for events.
      *                   This will call {@link #identify(String)}.
-     *
      * @param properties Optional JSONObject that could be passed to add properties to the
      *                   opt-in event that is sent to Mixpanel.
-     *
-     * See also {@link #optInTracking()} and {@link #optOutTracking()}.
+     *                   <p>
+     *                   See also {@link #optInTracking()} and {@link #optOutTracking()}.
      */
     public void optInTracking(String distinctId, JSONObject properties) {
         mPersistentIdentity.setOptOutTracking(false, mToken);
@@ -1276,6 +1290,7 @@ public class MixpanelAPI {
         }
         track("$opt_in", properties);
     }
+
     /**
      * Will return true if the user has opted out from tracking. See {@link #optOutTracking()} and
      * {@link
@@ -1296,7 +1311,7 @@ public class MixpanelAPI {
      * object before you work with it. Once you call identify, the user identity will
      * persist across stops and starts of your application, until you make another
      * call to identify using a different id.
-     *
+     * <p>
      * A typical use case for the People object might look like this:
      *
      * <pre>
@@ -1329,17 +1344,14 @@ public class MixpanelAPI {
      */
     public interface People {
         /**
+         * @param distinctId a String that uniquely identifies the user. Users identified with
+         *                   the same distinct id will be considered to be the same user in Mixpanel,
+         *                   across all platforms and devices. We recommend choosing a distinct id
+         *                   that is meaningful to your other systems (for example, a server-side account
+         *                   identifier)
+         * @see MixpanelAPI#identify(String)
          * @deprecated in 6.2.0
          * NOTE: This method is deprecated. Please use {@link MixpanelAPI#identify(String)} instead.
-         *
-         *
-         * @param distinctId a String that uniquely identifies the user. Users identified with
-         *     the same distinct id will be considered to be the same user in Mixpanel,
-         *     across all platforms and devices. We recommend choosing a distinct id
-         *     that is meaningful to your other systems (for example, a server-side account
-         *     identifier)
-         *
-         * @see MixpanelAPI#identify(String)
          */
         @Deprecated
         void identify(String distinctId);
@@ -1350,7 +1362,7 @@ public class MixpanelAPI {
          * possibly overwriting an existing property with the same name.
          *
          * @param propertyName The name of the Mixpanel property. This must be a String, for example "Zip Code"
-         * @param value The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
+         * @param value        The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
          */
         void set(String propertyName, Object value);
 
@@ -1358,10 +1370,10 @@ public class MixpanelAPI {
          * Set a collection of properties on the identified user all at once.
          *
          * @param properties a Map containing the collection of properties you wish to apply
-         *      to the identified user. Each key in the Map will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
-         *
-         * See also {@link #set(org.json.JSONObject)}
+         *                   to the identified user. Each key in the Map will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
+         *                   <p>
+         *                   See also {@link #set(org.json.JSONObject)}
          */
         void setMap(Map<String, Object> properties);
 
@@ -1369,8 +1381,8 @@ public class MixpanelAPI {
          * Set a collection of properties on the identified user all at once.
          *
          * @param properties a JSONObject containing the collection of properties you wish to apply
-         *      to the identified user. Each key in the JSONObject will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
+         *                   to the identified user. Each key in the JSONObject will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
          */
         void set(JSONObject properties);
 
@@ -1378,7 +1390,7 @@ public class MixpanelAPI {
          * Works just like {@link People#set(String, Object)}, except it will not overwrite existing property values. This is useful for properties like "First login date".
          *
          * @param propertyName The name of the Mixpanel property. This must be a String, for example "Zip Code"
-         * @param value The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
+         * @param value        The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
          */
         void setOnce(String propertyName, Object value);
 
@@ -1386,10 +1398,10 @@ public class MixpanelAPI {
          * Like {@link People#set(String, Object)}, but will not set properties that already exist on a record.
          *
          * @param properties a Map containing the collection of properties you wish to apply
-         *      to the identified user. Each key in the Map will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
-         *
-         * See also {@link #setOnce(org.json.JSONObject)}
+         *                   to the identified user. Each key in the Map will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
+         *                   <p>
+         *                   See also {@link #setOnce(org.json.JSONObject)}
          */
         void setOnceMap(Map<String, Object> properties);
 
@@ -1397,8 +1409,8 @@ public class MixpanelAPI {
          * Like {@link People#set(String, Object)}, but will not set properties that already exist on a record.
          *
          * @param properties a JSONObject containing the collection of properties you wish to apply
-         *      to the identified user. Each key in the JSONObject will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
+         *                   to the identified user. Each key in the JSONObject will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
          */
         void setOnce(JSONObject properties);
 
@@ -1407,9 +1419,8 @@ public class MixpanelAPI {
          * have the associated property, the amount will be added to zero. To reduce a property,
          * provide a negative number for the value.
          *
-         * @param name the People Analytics property that should have its value changed
+         * @param name      the People Analytics property that should have its value changed
          * @param increment the amount to be added to the current value of the named property
-         *
          * @see #increment(Map)
          */
         void increment(String name, double increment);
@@ -1421,7 +1432,7 @@ public class MixpanelAPI {
          * be merged into the existing value, with key/value pairs in updates taking precedence over
          * existing key/value pairs where the keys are the same.
          *
-         * @param name the People Analytics property that should have the update merged into it
+         * @param name    the People Analytics property that should have the update merged into it
          * @param updates a JSONObject with keys and values that will be merged into the property
          */
         void merge(String name, JSONObject updates);
@@ -1433,8 +1444,7 @@ public class MixpanelAPI {
          * be added to zero. To reduce a property, provide a negative number for the value.
          *
          * @param properties A map of String properties names to Long amounts. Each
-         *     property associated with a name in the map will have its value changed by the given amount
-         *
+         *                   property associated with a name in the map will have its value changed by the given amount
          * @see #increment(String, double)
          */
         void increment(Map<String, ? extends Number> properties);
@@ -1443,7 +1453,8 @@ public class MixpanelAPI {
          * Appends a value to a list-valued property. If the property does not currently exist,
          * it will be created as a list of one element. If the property does exist and doesn't
          * currently have a list value, the append will be ignored.
-         * @param name the People Analytics property that should have it's value appended to
+         *
+         * @param name  the People Analytics property that should have it's value appended to
          * @param value the new value that will appear at the end of the property's list
          */
         void append(String name, Object value);
@@ -1453,7 +1464,7 @@ public class MixpanelAPI {
          * If the property does not currently exist, it will be created with the given list as it's value.
          * If the property exists and is not list-valued, the union will be ignored.
          *
-         * @param name name of the list-valued property to set or modify
+         * @param name  name of the list-valued property to set or modify
          * @param value an array of values to add to the property value if not already present
          */
         void union(String name, JSONArray value);
@@ -1462,13 +1473,15 @@ public class MixpanelAPI {
          * Remove value from a list-valued property only if they are already present in the list.
          * If the property does not currently exist, the remove will be ignored.
          * If the property exists and is not list-valued, the remove will be ignored.
-         * @param name the People Analytics property that should have it's value removed from
+         *
+         * @param name  the People Analytics property that should have it's value removed from
          * @param value the value that will be removed from the property's list
          */
         void remove(String name, Object value);
 
         /**
          * permanently removes the property with the given name from the user's profile
+         *
          * @param name name of a property to unset
          */
         void unset(String name);
@@ -1476,7 +1489,7 @@ public class MixpanelAPI {
         /**
          * Track a revenue transaction for the identified people profile.
          *
-         * @param amount the amount of money exchanged. Positive amounts represent purchases or income from the customer, negative amounts represent refunds or payments to the customer.
+         * @param amount     the amount of money exchanged. Positive amounts represent purchases or income from the customer, negative amounts represent refunds or payments to the customer.
          * @param properties an optional collection of properties to associate with this transaction.
          */
         void trackCharge(double amount, JSONObject properties);
@@ -1506,13 +1519,11 @@ public class MixpanelAPI {
          * with events sent using {@link People#set(String, Object)} and {@link People#increment(String, double)}.
          * If no calls to {@link MixpanelAPI#identify(String)} have been made, this method will return null.
          *
-         * @deprecated in 6.2.0
-         * NOTE: This method is deprecated. Please use {@link MixpanelAPI#getDistinctId()} instead.
-         *
          * @return The distinct id associated with updates to People Analytics
-         *
          * @see People#identify(String)
          * @see MixpanelAPI#getDistinctId()
+         * @deprecated in 6.2.0
+         * NOTE: This method is deprecated. Please use {@link MixpanelAPI#getDistinctId()} instead.
          */
         @Deprecated
         String getDistinctId();
@@ -1521,7 +1532,6 @@ public class MixpanelAPI {
          * Return an instance of Mixpanel people with a temporary distinct id.
          *
          * @param distinctId Unique identifier (distinct_id) that the people object will have
-         *
          * @return An instance of {@link MixpanelAPI.People} with the specified distinct_id
          */
         People withIdentity(String distinctId);
@@ -1532,7 +1542,7 @@ public class MixpanelAPI {
      * You can get an instance by calling {@link MixpanelAPI#getGroup(String, Object)}
      *
      * <p>The Group object is used to update properties in a group's Group Analytics record.
-     *
+     * <p>
      * A typical use case for the Group object might look like this:
      *
      * <pre>
@@ -1569,7 +1579,7 @@ public class MixpanelAPI {
          * possibly overwriting an existing property with the same name.
          *
          * @param propertyName The name of the Mixpanel property. This must be a String, for example "Zip Code"
-         * @param value The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
+         * @param value        The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
          */
         void set(String propertyName, Object value);
 
@@ -1577,10 +1587,10 @@ public class MixpanelAPI {
          * Set a collection of properties on the identified group all at once.
          *
          * @param properties a Map containing the collection of properties you wish to apply
-         *      to the identified group. Each key in the Map will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
-         *
-         * See also {@link #set(org.json.JSONObject)}
+         *                   to the identified group. Each key in the Map will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
+         *                   <p>
+         *                   See also {@link #set(org.json.JSONObject)}
          */
         void setMap(Map<String, Object> properties);
 
@@ -1588,8 +1598,8 @@ public class MixpanelAPI {
          * Set a collection of properties on the identified group all at once.
          *
          * @param properties a JSONObject containing the collection of properties you wish to apply
-         *      to the identified group. Each key in the JSONObject will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
+         *                   to the identified group. Each key in the JSONObject will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
          */
         void set(JSONObject properties);
 
@@ -1597,7 +1607,7 @@ public class MixpanelAPI {
          * Works just like {@link Group#set(String, Object)}, except it will not overwrite existing property values. This is useful for properties like "First login date".
          *
          * @param propertyName The name of the Mixpanel property. This must be a String, for example "Zip Code"
-         * @param value The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
+         * @param value        The value of the Mixpanel property. For "Zip Code", this value might be the String "90210"
          */
         void setOnce(String propertyName, Object value);
 
@@ -1605,10 +1615,10 @@ public class MixpanelAPI {
          * Like {@link Group#set(String, Object)}, but will not set properties that already exist on a record.
          *
          * @param properties a Map containing the collection of properties you wish to apply
-         *      to the identified group. Each key in the Map will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
-         *
-         * See also {@link #setOnce(org.json.JSONObject)}
+         *                   to the identified group. Each key in the Map will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
+         *                   <p>
+         *                   See also {@link #setOnce(org.json.JSONObject)}
          */
         void setOnceMap(Map<String, Object> properties);
 
@@ -1616,8 +1626,8 @@ public class MixpanelAPI {
          * Like {@link Group#set(String, Object)}, but will not set properties that already exist on a record.
          *
          * @param properties a JSONObject containing the collection of properties you wish to apply
-         *      to this group. Each key in the JSONObject will be associated with
-         *      a property name, and the value of that key will be assigned to the property.
+         *                   to this group. Each key in the JSONObject will be associated with
+         *                   a property name, and the value of that key will be assigned to the property.
          */
         void setOnce(JSONObject properties);
 
@@ -1626,7 +1636,7 @@ public class MixpanelAPI {
          * If the property does not currently exist, it will be created with the given list as its value.
          * If the property exists and is not list-valued, the union will be ignored.
          *
-         * @param name name of the list-valued property to set or modify
+         * @param name  name of the list-valued property to set or modify
          * @param value an array of values to add to the property value if not already present
          */
         void union(String name, JSONArray value);
@@ -1636,13 +1646,14 @@ public class MixpanelAPI {
          * If the property does not currently exist, the remove will be ignored.
          * If the property exists and is not list-valued, the remove will be ignored.
          *
-         * @param name the Group Analytics list-valued property that should have a value removed
+         * @param name  the Group Analytics list-valued property that should have a value removed
          * @param value the value that will be removed from the list
          */
         void remove(String name, Object value);
 
         /**
          * Permanently removes the property with the given name from the group's profile
+         *
          * @param name name of a property to unset
          */
         void unset(String name);
@@ -1660,9 +1671,9 @@ public class MixpanelAPI {
     /**
      * Attempt to register MixpanelActivityLifecycleCallbacks to the application's event lifecycle.
      * Once registered, we can automatically flush on an app background.
-     *
+     * <p>
      * This is only available if the android version is >= 16.
-     *
+     * <p>
      * This function is automatically called when the library is initialized unless you explicitly
      * set com.mixpanel.android.MPConfig.AutoShowMixpanelUpdates to false in your AndroidManifest.xml
      */
@@ -1682,7 +1693,7 @@ public class MixpanelAPI {
     /**
      * Based on the application's event lifecycle this method will determine whether the app
      * is running in the foreground or not.
-     *
+     * <p>
      * If your build version is below 14 this method will always return false.
      *
      * @return True if the app is running in the foreground.
@@ -1714,7 +1725,8 @@ public class MixpanelAPI {
         void process(MixpanelAPI m);
     }
 
-    /* package */ static void allInstances(InstanceProcessor processor) {
+    /* package */
+    static void allInstances(InstanceProcessor processor) {
         synchronized (sInstanceMap) {
             for (final Map<Context, MixpanelAPI> contextInstances : sInstanceMap.values()) {
                 for (final MixpanelAPI instance : contextInstances.values()) {
@@ -1782,14 +1794,14 @@ public class MixpanelAPI {
                 return;
             }
             identify_people(distinctId);
-         }
+        }
 
-         private void identify_people(String distinctId) {
-             synchronized (mPersistentIdentity) {
-                 mPersistentIdentity.setPeopleDistinctId(distinctId);
-             }
-             pushWaitingPeopleRecord(distinctId);
-         }
+        private void identify_people(String distinctId) {
+            synchronized (mPersistentIdentity) {
+                mPersistentIdentity.setPeopleDistinctId(distinctId);
+            }
+            pushWaitingPeopleRecord(distinctId);
+        }
 
         @Override
         public void setMap(Map<String, Object> properties) {
@@ -1811,7 +1823,7 @@ public class MixpanelAPI {
             if (hasOptedOutTracking()) return;
             try {
                 final JSONObject sendProperties = new JSONObject(mDeviceInfo);
-                for (final Iterator<?> iter = properties.keys(); iter.hasNext();) {
+                for (final Iterator<?> iter = properties.keys(); iter.hasNext(); ) {
                     final String key = (String) iter.next();
                     sendProperties.put(key, properties.get(key));
                 }
@@ -1967,7 +1979,7 @@ public class MixpanelAPI {
                 transactionValue.put("$time", dateFormat.format(now));
 
                 if (null != properties) {
-                    for (final Iterator<?> iter = properties.keys(); iter.hasNext();) {
+                    for (final Iterator<?> iter = properties.keys(); iter.hasNext(); ) {
                         final String key = (String) iter.next();
                         transactionValue.put(key, properties.get(key));
                     }
@@ -2072,7 +2084,7 @@ public class MixpanelAPI {
             if (hasOptedOutTracking()) return;
             try {
                 final JSONObject sendProperties = new JSONObject();
-                for (final Iterator<?> iter = properties.keys(); iter.hasNext();) {
+                for (final Iterator<?> iter = properties.keys(); iter.hasNext(); ) {
                     final String key = (String) iter.next();
                     sendProperties.put(key, properties.get(key));
                 }
@@ -2227,10 +2239,10 @@ public class MixpanelAPI {
             messageProps.put("time", System.currentTimeMillis());
             messageProps.put("distinct_id", distinctId);
             messageProps.put("$had_persisted_distinct_id", mPersistentIdentity.getHadPersistedDistinctId());
-            if(anonymousId != null) {
+            if (anonymousId != null) {
                 messageProps.put("$device_id", anonymousId);
             }
-            if(userId != null) {
+            if (userId != null) {
                 messageProps.put("$user_id", userId);
             }
 
