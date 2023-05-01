@@ -56,13 +56,13 @@ import javax.net.ssl.SSLSocketFactory;
      * for yourself.
      *
      * @param messageContext should be the Main Activity of the application
-     *     associated with these messages.
+     *                       associated with these messages.
      */
     public static AnalyticsMessages getInstance(final Context messageContext) {
         synchronized (sInstances) {
             final Context appContext = messageContext.getApplicationContext();
             AnalyticsMessages ret;
-            if (! sInstances.containsKey(appContext)) {
+            if (!sInstances.containsKey(appContext)) {
                 ret = new AnalyticsMessages(appContext);
                 sInstances.put(appContext, ret);
             } else {
@@ -271,7 +271,8 @@ import javax.net.ssl.SSLSocketFactory;
                         // see https://github.com/mixpanel/mixpanel-android/issues/567
                         message.remove(jsonKey);
                         MPLog.e(LOGTAG, "Removing people profile property from update (see https://github.com/mixpanel/mixpanel-android/issues/567)", e);
-                    } catch (JSONException e) {}
+                    } catch (JSONException e) {
+                    }
                 }
             }
             this.mMessage = message;
@@ -329,13 +330,13 @@ import javax.net.ssl.SSLSocketFactory;
         }
 
         public boolean isDead() {
-            synchronized(mHandlerLock) {
+            synchronized (mHandlerLock) {
                 return mHandler == null;
             }
         }
 
         public void runMessage(Message msg) {
-            synchronized(mHandlerLock) {
+            synchronized (mHandlerLock) {
                 if (mHandler == null) {
                     // We died under suspicious circumstances. Don't try to send any more events.
                     logAboutMessageToMixpanel("Dead mixpanel worker dropping a message: " + msg.what);
@@ -427,7 +428,7 @@ import javax.net.ssl.SSLSocketFactory;
                         mDbAdapter.cleanupAllEvents(MPDbAdapter.Table.ANONYMOUS_PEOPLE, token);
                     } else if (msg.what == KILL_WORKER) {
                         MPLog.w(LOGTAG, "Worker received a hard kill. Dumping all events and force-killing. Thread id " + Thread.currentThread().getId());
-                        synchronized(mHandlerLock) {
+                        synchronized (mHandlerLock) {
                             mDbAdapter.deleteDB();
                             mHandler = null;
                             Looper.myLooper().quit();
@@ -513,7 +514,7 @@ import javax.net.ssl.SSLSocketFactory;
                     byte[] response;
                     try {
                         final SSLSocketFactory socketFactory = mConfig.getSSLSocketFactory();
-                        response = poster.performRequest(url, params, socketFactory);
+                        response = poster.performRequest(url, params, mConfig.getGlobalHeaders(), mConfig.getGlobalCookies(), socketFactory);
                         if (null == response) {
                             deleteEvents = false;
                             logAboutMessageToMixpanel("Response was null, unexpected failure posting to " + url + ".");
@@ -554,7 +555,7 @@ import javax.net.ssl.SSLSocketFactory;
                         dbAdapter.cleanupEvents(lastId, table, token);
                     } else {
                         removeMessages(FLUSH_QUEUE, token);
-                        mTrackEngageRetryAfter = Math.max((long)Math.pow(2, mFailedRetries) * 60000, mTrackEngageRetryAfter);
+                        mTrackEngageRetryAfter = Math.max((long) Math.pow(2, mFailedRetries) * 60000, mTrackEngageRetryAfter);
                         mTrackEngageRetryAfter = Math.min(mTrackEngageRetryAfter, 10 * 60 * 1000); // limit 10 min
                         final Message flushMessage = Message.obtain();
                         flushMessage.what = FLUSH_QUEUE;
@@ -598,8 +599,8 @@ import javax.net.ssl.SSLSocketFactory;
                     ret.put("$app_version_string", applicationVersionName);
                 }
 
-                 final Integer applicationVersionCode = mSystemInformation.getAppVersionCode();
-                 if (null != applicationVersionCode) {
+                final Integer applicationVersionCode = mSystemInformation.getAppVersionCode();
+                if (null != applicationVersionCode) {
                     final String applicationVersion = String.valueOf(applicationVersionCode);
                     ret.put("$app_release", applicationVersion);
                     ret.put("$app_build_number", applicationVersion);
@@ -638,7 +639,7 @@ import javax.net.ssl.SSLSocketFactory;
                 final JSONObject sendProperties = getDefaultEventProperties();
                 sendProperties.put("token", eventDescription.getToken());
                 if (eventProperties != null) {
-                    for (final Iterator<?> iter = eventProperties.keys(); iter.hasNext();) {
+                    for (final Iterator<?> iter = eventProperties.keys(); iter.hasNext(); ) {
                         final String key = (String) iter.next();
                         sendProperties.put(key, eventProperties.get(key));
                     }
