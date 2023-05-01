@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
@@ -126,9 +127,13 @@ public class HttpService implements RemoteService {
                     for (Map.Entry<String, Object> param : params.entrySet()) {
                         builder.appendQueryParameter(param.getKey(), param.getValue().toString());
                     }
-                    for(Map.Entry<String,String> param: headers.entrySet()){
+                    for (Map.Entry<String, String> param : headers.entrySet()) {
                         connection.setRequestProperty(param.getKey(), param.getValue());
                     }
+//                    StringJoiner stringJoiner = new StringJoiner(";");
+//                    for (Map.Entry<String, String> param : cookies.entrySet()) {
+//                        stringJoiner.add(param.getKey() + "=" + param.getValue());
+//                    }
                     String query = builder.build().getEncodedQuery();
 
                     connection.setFixedLengthStreamingMode(query.getBytes().length);
