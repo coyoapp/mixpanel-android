@@ -18,6 +18,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
@@ -58,6 +60,11 @@ public class OptOutTest {
         final RemoteService mockPoster = new HttpService() {
             @Override
             public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+                return performRequest(endpointUrl, params, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), socketFactory);
+            }
+
+            @Override
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory) {
                 if (params != null) {
                     final String jsonData = Base64Coder.decodeString(params.get("data").toString());
                     assertTrue(params.containsKey("data"));
@@ -158,7 +165,7 @@ public class OptOutTest {
                 return mAnalyticsMessages;
             }
         };
-        
+
         mixpanel.optInTracking();
         assertFalse(mixpanel.hasOptedOutTracking());
         mixpanel.optOutTracking();
@@ -177,7 +184,7 @@ public class OptOutTest {
     @Test
     public void testPeopleUpdates() throws InterruptedException, JSONException {
         mCleanUpCalls = new CountDownLatch(2);
-        mMixpanelAPI = new MixpanelAPI(InstrumentationRegistry.getInstrumentation().getContext(), mMockReferrerPreferences, TOKEN,false, null, true) {
+        mMixpanelAPI = new MixpanelAPI(InstrumentationRegistry.getInstrumentation().getContext(), mMockReferrerPreferences, TOKEN, false, null, true) {
             @Override
             PersistentIdentity getPersistentIdentity(Context context, Future<SharedPreferences> referrerPreferences, String token, String instanceName) {
                 mPersistentIdentity = super.getPersistentIdentity(context, referrerPreferences, token, instanceName);
