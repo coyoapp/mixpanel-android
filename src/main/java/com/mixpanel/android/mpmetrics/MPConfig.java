@@ -12,6 +12,7 @@ import com.mixpanel.android.util.MPLog;
 import com.mixpanel.android.util.OfflineMode;
 
 import java.security.GeneralSecurityException;
+import java.util.HashMap;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -22,7 +23,7 @@ import javax.net.ssl.SSLSocketFactory;
  * options using &lt;meta-data&gt; tags inside of the &lt;application&gt; tag in your AndroidManifest.xml.
  * All settings are optional, and default to reasonable recommended values. Most users will not have to
  * set any options.
- *
+ * <p>
  * Mixpanel understands the following options:
  *
  * <dl>
@@ -85,7 +86,6 @@ import javax.net.ssl.SSLSocketFactory;
  *     <dt>com.mixpanel.android.MPConfig.RemoveLegacyResidualFiles</dt>
  *     <dd>A boolean value. If true, Mixpanel will remove the residual files from legacy versions such as images produced by deprecated Messages and Experiment features. Defaults to false.</dd>
  * </dl>
- *
  */
 public class MPConfig {
 
@@ -113,18 +113,18 @@ public class MPConfig {
      * That means it will ignore settings you associated with the default SSLSocketFactory in the
      * schema registry or in underlying HTTP libraries. If you'd prefer for Mixpanel to use your
      * own SSL settings, you'll need to call setSSLSocketFactory early in your code, like this
-     *
+     * <p>
      * {@code
      * <pre>
      *     MPConfig.getInstance(context).setSSLSocketFactory(someCustomizedSocketFactory);
      * </pre>
      * }
-     *
+     * <p>
      * Your settings will be globally available to all Mixpanel instances, and will be used for
      * all SSL connections in the library. The call is thread safe, but should be done before
      * your first call to MixpanelAPI.getInstance to insure that the library never uses it's
      * default.
-     *
+     * <p>
      * The given socket factory may be used from multiple threads, which is safe for the system
      * SSLSocketFactory class, but if you pass a subclass you should ensure that it is thread-safe
      * before passing it to Mixpanel.
@@ -139,18 +139,18 @@ public class MPConfig {
      * {@link OfflineMode} allows Mixpanel to be in-sync with client offline internal logic.
      * If you want to integrate your own logic with Mixpanel you'll need to call
      * {@link #setOfflineMode(OfflineMode)} early in your code, like this
-     *
+     * <p>
      * {@code
      * <pre>
      *     MPConfig.getInstance(context).setOfflineMode(OfflineModeImplementation);
      * </pre>
      * }
-     *
+     * <p>
      * Your settings will be globally available to all Mixpanel instances, and will be used across
      * all the library. The call is thread safe, but should be done before
      * your first call to MixpanelAPI.getInstance to insure that the library never uses it's
      * default.
-     *
+     * <p>
      * The given {@link OfflineMode} may be used from multiple threads, you should ensure that
      * your implementation is thread-safe before passing it to Mixpanel.
      *
@@ -210,7 +210,7 @@ public class MPConfig {
                     throw new NumberFormatException(dataExpirationMetaData.toString() + " is not a number.");
                 }
             } catch (Exception e) {
-                MPLog.e(LOGTAG,"Error parsing com.mixpanel.android.MPConfig.DataExpiration meta-data value", e);
+                MPLog.e(LOGTAG, "Error parsing com.mixpanel.android.MPConfig.DataExpiration meta-data value", e);
             }
         }
         mDataExpiration = dataExpirationLong;
@@ -270,9 +270,13 @@ public class MPConfig {
         return mDataExpiration;
     }
 
-    public int getMinimumDatabaseLimit() { return mMinimumDatabaseLimit; }
+    public int getMinimumDatabaseLimit() {
+        return mMinimumDatabaseLimit;
+    }
 
-    public int getMaximumDatabaseLimit() { return mMaximumDatabaseLimit; }
+    public int getMaximumDatabaseLimit() {
+        return mMaximumDatabaseLimit;
+    }
 
     public void setMaximumDatabaseLimit(int maximumDatabaseLimit) {
         mMaximumDatabaseLimit = maximumDatabaseLimit;
@@ -287,7 +291,9 @@ public class MPConfig {
         return mEventsEndpoint;
     }
 
-    public boolean getTrackAutomaticEvents() { return mTrackAutomaticEvents; }
+    public boolean getTrackAutomaticEvents() {
+        return mTrackAutomaticEvents;
+    }
 
     // In parity with iOS SDK
     public void setServerURL(String serverURL) {
@@ -354,7 +360,9 @@ public class MPConfig {
         return mUseIpAddressForGeolocation;
     }
 
-    public boolean getRemoveLegacyResidualFiles() { return mRemoveLegacyResidualFiles; }
+    public boolean getRemoveLegacyResidualFiles() {
+        return mRemoveLegacyResidualFiles;
+    }
 
     public void setUseIpAddressForGeolocation(boolean useIpAddressForGeolocation) {
         mUseIpAddressForGeolocation = useIpAddressForGeolocation;
@@ -371,6 +379,7 @@ public class MPConfig {
     public void setTrackAutomaticEvents(boolean trackAutomaticEvents) {
         mTrackAutomaticEvents = trackAutomaticEvents;
     }
+
     // Pre-configured package name for resources, if they differ from the application package name
     //
     // mContext.getPackageName() actually returns the "application id", which
@@ -400,7 +409,8 @@ public class MPConfig {
     ///////////////////////////////////////////////
 
     // Package access for testing only- do not call directly in library code
-    /* package */ static MPConfig readConfig(Context appContext) {
+    /* package */
+    static MPConfig readConfig(Context appContext) {
         final String packageName = appContext.getPackageName();
         try {
             final ApplicationInfo appInfo = appContext.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
@@ -461,4 +471,34 @@ public class MPConfig {
     private static MPConfig sInstance;
     private static final Object sInstanceLock = new Object();
     private static final String LOGTAG = "MixpanelAPI.Conf";
+
+    private HashMap<String, String> globalHeaders = new HashMap<>();
+
+    private HashMap<String, String> globalCookies = new HashMap<>();
+
+    public HashMap<String, String> getGlobalHeaders() {
+        return globalHeaders;
+    }
+
+    public void addGlobalHeader(String key, String value) {
+        if (key != null && value != null && !key.isEmpty() && !value.isEmpty())
+            this.globalHeaders.put(key, value);
+    }
+
+    public HashMap<String, String> getGlobalCookies() {
+        return globalCookies;
+    }
+
+    public void addGlobalCookie(String key, String value) {
+        if (key != null && value != null && !key.isEmpty() && !value.isEmpty())
+            this.globalCookies.put(key, value);
+    }
+
+    public void clearGlobalHeaders(){
+        this.globalHeaders.clear();
+    }
+
+    public void clearGlobalCookies(){
+        this.globalCookies.clear();
+    }
 }

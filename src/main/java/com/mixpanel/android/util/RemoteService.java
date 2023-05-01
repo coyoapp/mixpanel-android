@@ -17,6 +17,9 @@ public interface RemoteService {
     byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory)
             throws ServiceUnavailableException, IOException;
 
+    public byte[] performRequest(String endpointUrl, Map<String, Object> params, Map<String, String> headers, Map<String, String> cookies, SSLSocketFactory socketFactory)
+            throws ServiceUnavailableException, IOException;
+
     class ServiceUnavailableException extends Exception {
         public ServiceUnavailableException(String message, String strRetryAfter) {
             super(message);
